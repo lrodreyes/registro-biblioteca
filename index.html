@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Biblioteca</title>
+</head>
+<body>
+
+	<section id="seccionInformacionCategoria" hidden>
+		<button id="agregarCategoria" onClick="mostrarSeccionAC()">Agregar</button>
+		<button id="verLibros" onClick="getInfoLibro()">Ver libros</button>
+
+		<div id="datosCategoria">		
+
+		</div>
+
+		<button id="anteriorCategoria" onClick="anteriorCategoria()">Atras</button>
+		<button id="siguienteCategoria" onClick="siguienteCategoria()">Siguiente</button>
+	</section>
+
+	<section id="seccionAgregarCategoria" hidden>
+			<label>Nombre de la categoria: </label>
+			<input type="text" id="nombre" placeholder="Nombre" required>
+			<button onClick="getInfoCategoria()">Cancelar</button>
+			<input type="submit" onClick="registrarCategoria()" value="Agregar"></input>
+	</section>
+
+	<section id="seccionInformacionLibro" hidden>
+		<button id="menuCategoria" onClick="menuCategoria()">Volver al menú</button>
+		<button id="agregarLibro" onClick="mostrarSeccionAL()">Agregar libro</button>
+
+		<div id="datosLibro">
+		</div>
+
+		<button id="siguienteLibro" onClick="siguienteLibro">Siguiente</button>
+		<button id="anteriorLibro" onClick="anteriorLibro">Anterior</button>
+	</section>
+
+	<section id="seccionAgregarLibro" hidden>
+		<button onClick="regresarMenu()">Menú categorias</button>
+
+		<label>Titulo del libro:</label>
+		<input type="text" id="titulo" placeholder="Titulo" required><br>
+
+		<label>Nombre del autor del libro</label>
+		<input type="text" id="autor" required><br>
+
+		<label>Año de publicacion</label><!-- ver si se puede desplegar un calendario con solo los años -->
+		<input type="text" id="año" required><br>
+
+		<label>Nombre de la editorial</label>
+		<input type="text" id="editorial" required><br>
+
+		<label>Numero de la edicion</label>
+		<input type="number" id="edicion" required><br>
+
+		<label>Pais en el que se publico</label>
+		<input type="text" id="pais" required><br>
+
+		<button onClick="regresarLibros()">Cancelar</button>
+		<input type="submit" onClick="registrarLibro()" value="Agregar">
+	</section>
+
+	<script type="text/javascript" src="NodoLibro.js"></script>
+	<script type="text/javascript" src="NodoCategoria.js"></script>
+	<script type="text/javascript" src="ListaLibros.js"></script>
+	<script type="text/javascript" src="ListaCategorias.js"></script>
+	<script type="text/javascript" src="interfaz.js"></script>
+</body>
+</html>
