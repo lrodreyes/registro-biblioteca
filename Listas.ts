@@ -11,7 +11,6 @@ class Lista{
 	public insertarNodo(nodo : any) : void{
 		//COMPROBAR SI NO EXISTE NINGUN NODO CATEGORIA
 		if (this.inicio== null && this.fin==null){ 
-
 			//REFERENCIAR EL NODO POR LOS APUNTADORES DE INICIO Y FIN			
 			this.inicio = nodo;
 			this.fin = nodo;
@@ -44,7 +43,6 @@ class Lista{
 }
 
 class ListaMenu extends Lista{
-
 	constructor(){
 		super();
 	}
@@ -70,13 +68,11 @@ class ListaLibro extends Lista{
 		nodoLibro.setEdicion(datos[4]);
 		nodoLibro.setPais(datos[5]);
 
+		this.insertarNodo(nodoLibro);
+
 		if (nodoCategoria.getAbajo()==null){ //SI NO EXISTE ALGUN LIBRO REGISTRADO EN ESA CATEGORIA
-			this.insertarNodo(nodoLibro);
 			nodoCategoria.setAbajo(nodoLibro);
 			nodoLibro.setMiCategoria(nodoCategoria);
-		}
-		else{//SI EXISTE SE AGREGAN LOS NODOS DE FORMA NORMAL
-			this.insertarNodo(nodoLibro);
 		}
 	}
 }

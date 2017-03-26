@@ -67,13 +67,10 @@ var ListaLibro = (function (_super) {
         nodoLibro.setEditorial(datos[3]);
         nodoLibro.setEdicion(datos[4]);
         nodoLibro.setPais(datos[5]);
+        this.insertarNodo(nodoLibro);
         if (nodoCategoria.getAbajo() == null) {
-            this.insertarNodo(nodoLibro);
             nodoCategoria.setAbajo(nodoLibro);
             nodoLibro.setMiCategoria(nodoCategoria);
-        }
-        else {
-            this.insertarNodo(nodoLibro);
         }
     };
     return ListaLibro;

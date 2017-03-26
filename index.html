@@ -19,10 +19,12 @@
 	</section>
 
 	<section id="seccionAgregarCategoria" hidden>
+		<form id="formCategoria">
 			<label>Nombre de la categoria: </label>
 			<input type="text" id="nombre" placeholder="Nombre" required>
 			<button onClick="getInfoCategoria()">Cancelar</button>
 			<input type="submit" onClick="registrarCategoria()" value="Agregar"></input>
+		</form>	
 	</section>
 
 	<section id="seccionInformacionLibro" hidden>
@@ -37,27 +39,28 @@
 	</section>
 
 	<section id="seccionAgregarLibro" hidden>
+		<form id="formLibro">
+			<label>Titulo del libro:</label>
+			<input type="text" id="titulo" placeholder="Titulo" required><br>
 
-		<label>Titulo del libro:</label>
-		<input type="text" id="titulo" placeholder="Titulo" required><br>
+			<label>Nombre del autor del libro</label>
+			<input type="text" id="autor" required><br>
 
-		<label>Nombre del autor del libro</label>
-		<input type="text" id="autor" required><br>
+			<label>Año de publicacion</label><!-- ver si se puede desplegar un calendario con solo los años -->
+			<input type="text" id="año" required><br>
 
-		<label>Año de publicacion</label><!-- ver si se puede desplegar un calendario con solo los años -->
-		<input type="text" id="año" required><br>
+			<label>Nombre de la editorial</label>
+			<input type="text" id="editorial" required><br>
 
-		<label>Nombre de la editorial</label>
-		<input type="text" id="editorial" required><br>
+			<label>Numero de la edicion</label>
+			<input type="number" id="edicion" required><br>
 
-		<label>Numero de la edicion</label>
-		<input type="number" id="edicion" required><br>
+			<label>Pais en el que se publico</label>
+			<input type="text" id="pais" required><br>
 
-		<label>Pais en el que se publico</label>
-		<input type="text" id="pais" required><br>
-
-		<button onClick="getInfoLibro()">Cancelar</button>
-		<input type="submit" onClick="registrarLibro()" value="Agregar">
+			<button onClick="getInfoLibro()">Cancelar</button>
+			<input type="submit" onClick="registrarLibro()" value="Agregar">
+		</form>		
 	</section>
 
 	<script type="text/javascript" src="NodoLibro.js"></script>

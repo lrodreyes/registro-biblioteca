@@ -48,7 +48,7 @@ function registrarCategoria() {
     var nombre = document.getElementById("nombre").value.toString();
     objListaMenu.insertarNodoMenu(nombre);
     alert("La categoria se registro correctamente");
-    document.getElementById("nombre").value = "";
+    document.getElementById("formCategoria").reset();
     if (auxiliarCategoria == null) {
         auxiliarCategoria = objListaMenu.getInicio();
     }
@@ -61,7 +61,8 @@ function registrarLibro() {
     var edicion = document.getElementById("edicion").value.toString();
     var pais = document.getElementById("pais").value.toString();
     var datos = [nombre, autor, año, editorial, edicion, pais];
-    objListaLibro.insertarNodo(auxiliarCategoria, datos);
+    objListaLibro.insertarNodoLibro(auxiliarCategoria, datos);
+    document.getElementById("formLibro").reset();
 }
 function getInfoLibro() {
     mostrarSeccionIL();
