@@ -2,8 +2,9 @@
 class Libro{
 
 	//APUNTADORES DE TIPO LIBRO
+	private miCategoria : Categoria;
 	private siguiente : Libro;
-	private anterior;
+	private anterior :Libro;
 
 	//INFORMACION
 	private titulo : string;
@@ -14,9 +15,9 @@ class Libro{
 	private pais : string;
 
 	constructor (){
-		anterior : Libro;
 		this.siguiente = null;
 		this.anterior = null;
+		this.miCategoria = null;
 	}
 
 	public setTitulo(titulo : string) : void {
@@ -43,6 +44,18 @@ class Libro{
 		this.pais = pais;
 	}
 
+	public setSiguiente(siguiente : Libro) : void{
+		this.siguiente = siguiente;
+	}
+
+	public setAnterior(anterior : Libro) : void{
+		this.anterior = anterior;
+	}
+
+	public setMiCategoria(miCategoria : Categoria) : void{
+		this.miCategoria = miCategoria;
+	}
+
 	public getTitulo() : string {
 		return this.titulo;
 	}
@@ -65,5 +78,17 @@ class Libro{
 
 	public getPais() : string {
 		return this.pais;
+	}
+
+	public getSiguiente() : Libro{
+		return this.siguiente;
+	}
+
+	public getAnterior() : Libro{
+		return this.anterior;
+	}
+
+	public getMiCategoria() : Categoria{
+		return this.miCategoria;
 	}
 }

@@ -1,11 +1,12 @@
 var objListaCategoria; //OBJETO PARA ACCEDER A LOS METODOS DE LA CLASE LISTACATEGORIA
-objListaCategoria = new ListaCategorias();
-objListaCategoria.insertarCategoria("Matematicas");
-objListaCategoria.insertarCategoria("Historia");
-objListaCategoria.insertarCategoria("Geografia");
+objListaCategoria = new ListaMenu();
+objListaCategoria.insertarNodoMenu("Matematicas");
+objListaCategoria.insertarNodoMenu("Historia");
+objListaCategoria.insertarNodoMenu("Geografia");
 var auxiliarCategoria; //APUNTADOR PARA RECORRER LOS NODOS CATEGORIA
 var auxiliarLibro; //APUNTADOR PARA RECORRER LOS NODOS DE TIPO LIBRO
 auxiliarCategoria = this.objListaCategoria.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
+auxiliarLibro = auxiliarCategoria.getAbajo();
 function mostrarSeccionIC() {
     document.getElementById("seccionAgregarCategoria").setAttribute("hidden", "true");
     document.getElementById("seccionInformacionLibro").setAttribute("hidden", "true");
@@ -36,7 +37,7 @@ if (auxiliarCategoria == null) {
     //MOSTRAR SOLO LA SECCION DE INFORMACION DE CATEGORIAS
     mostrarSeccionIC();
     //INSERTARLE EL MENSAJE DE QUE NO HAY NADA PARA MOSTRAR
-    document.getElementById("datosCategoria").innerHTML = "No hay categorias disponibles <br> Porfavor ingresa una categoria";
+    document.getElementById("datosCategoria").innerHTML = "<p> No hay categorias registradas </p>";
     //DESABILITAR BOTONOES
     document.getElementById("verLibros").setAttribute("disabled", "true");
     document.getElementById("anteriorCategoria").setAttribute("disabled", "true");
@@ -58,7 +59,7 @@ function siguienteCategoria() {
 function registrarCategoria() {
     //RECOGER EL NOMBRE DE LA CATEGORIA 
     var nombre = document.getElementById("nombre").value.toString();
-    objListaCategoria.insertarCategoria(nombre);
+    objListaCategoria.insertarNodoMenu(nombre);
     alert("La categoria se registro correctamente");
     document.getElementById("nombre").value = "";
 }
@@ -66,8 +67,21 @@ function agregarLibro() {
 }
 function getInfoLibro() {
     mostrarSeccionIL();
+    //COMPROBAR SI EXISTEN LIBROS REGISTRADOS
+    if (auxiliarLibro == null) {
+        //NO HAY LIBROS REGISTRADOS
+        var seccion = document.getElementById("datosLibro");
+        seccion.innerHTML = "\n\t\t\t<p> No existen libros registrados</p>";
+        document.getElementById("siguienteLibro").setAttribute("disabled", "true");
+        document.getElementById("anteriorLibro").setAttribute("disabled", "true");
+    }
+    else {
+        mostrarSeccionIL();
+    }
 }
 function getInfoCategoria() {
+    //LIMPIAR INPUT EN CASO DE QUE HAYA ESCRITO ALGO 
+    document.getElementById("nombre").value = "";
     mostrarSeccionIC();
     var nombre = auxiliarCategoria.getNombre();
     var cantidad = auxiliarCategoria.getCantidad();

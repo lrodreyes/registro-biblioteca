@@ -1,15 +1,16 @@
-var objListaCategoria : ListaCategorias; //OBJETO PARA ACCEDER A LOS METODOS DE LA CLASE LISTACATEGORIA
-objListaCategoria = new ListaCategorias();
+var objListaCategoria : ListaMenu; //OBJETO PARA ACCEDER A LOS METODOS DE LA CLASE LISTACATEGORIA
+objListaCategoria = new ListaMenu();
 
-objListaCategoria.insertarCategoria("Matematicas");
-objListaCategoria.insertarCategoria("Historia");
-objListaCategoria.insertarCategoria("Geografia");
+objListaCategoria.insertarNodoMenu("Matematicas");
+objListaCategoria.insertarNodoMenu("Historia");
+objListaCategoria.insertarNodoMenu("Geografia");
 
 var auxiliarCategoria : Categoria; //APUNTADOR PARA RECORRER LOS NODOS CATEGORIA
 var auxiliarLibro : Libro; //APUNTADOR PARA RECORRER LOS NODOS DE TIPO LIBRO
 
 
 auxiliarCategoria = this.objListaCategoria.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
+auxiliarLibro = auxiliarCategoria.getAbajo();
 
 function mostrarSeccionIC(){
 	document.getElementById("seccionAgregarCategoria").setAttribute("hidden","true");
@@ -47,7 +48,7 @@ if(auxiliarCategoria==null){
 	//MOSTRAR SOLO LA SECCION DE INFORMACION DE CATEGORIAS
 	mostrarSeccionIC();
 	//INSERTARLE EL MENSAJE DE QUE NO HAY NADA PARA MOSTRAR
-	document.getElementById("datosCategoria").innerHTML = "No hay categorias disponibles <br> Porfavor ingresa una categoria";
+	document.getElementById("datosCategoria").innerHTML = "<p> No hay categorias registradas </p>";
 
 	//DESABILITAR BOTONOES
 	document.getElementById("verLibros").setAttribute("disabled","true");
@@ -74,7 +75,7 @@ function siguienteCategoria(){
 function registrarCategoria(){
 	//RECOGER EL NOMBRE DE LA CATEGORIA 
 	let nombre : string = (<HTMLInputElement> document.getElementById("nombre")).value.toString();
-	objListaCategoria.insertarCategoria(nombre);
+	objListaCategoria.insertarNodoMenu(nombre);
 	alert("La categoria se registro correctamente");
 	document.getElementById("nombre").value = "";
 }
@@ -85,10 +86,26 @@ function agregarLibro(){
 
 function getInfoLibro(){
 	mostrarSeccionIL();
-	
+
+	//COMPROBAR SI EXISTEN LIBROS REGISTRADOS
+	if(auxiliarLibro==null){
+		//NO HAY LIBROS REGISTRADOS
+		let seccion = document.getElementById("datosLibro");
+		seccion.innerHTML=`
+			<p> No existen libros registrados</p>`;
+		document.getElementById("siguienteLibro").setAttribute("disabled","true");
+		document.getElementById("anteriorLibro").setAttribute("disabled","true");
+
+	}
+	else{
+		mostrarSeccionIL();
+		
+	}
 }
 
 function getInfoCategoria(){
+	//LIMPIAR INPUT EN CASO DE QUE HAYA ESCRITO ALGO 
+	document.getElementById("nombre").value="";
 	mostrarSeccionIC();
 	let nombre = auxiliarCategoria.getNombre();
 	let cantidad = auxiliarCategoria.getCantidad();
