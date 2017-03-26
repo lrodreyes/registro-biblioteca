@@ -7,6 +7,12 @@ var auxiliarCategoria; //APUNTADOR PARA RECORRER LOS NODOS CATEGORIA
 var auxiliarLibro; //APUNTADOR PARA RECORRER LOS NODOS DE TIPO LIBRO
 auxiliarCategoria = this.objListaCategoria.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
 auxiliarLibro = auxiliarCategoria.getAbajo();
+// auxiliarLibro.setTitulo("libro de matematicas");
+// auxiliarLibro.setAutor("juan");
+// auxiliarLibro.setAñoPublicacion("1995");
+// auxiliarLibro.setEditorial("mi editorial");
+// auxiliarLibro.setEdicion("segunda edicion");
+// auxiliarLibro.setPais("Mexico");
 function mostrarSeccionIC() {
     document.getElementById("seccionAgregarCategoria").setAttribute("hidden", "true");
     document.getElementById("seccionInformacionLibro").setAttribute("hidden", "true");
@@ -77,6 +83,14 @@ function getInfoLibro() {
     }
     else {
         mostrarSeccionIL();
+        var titulo = auxiliarLibro.getTitulo();
+        var autor = auxiliarLibro.getAutor();
+        var añoPublicacion = auxiliarLibro.getAñoPublicacion();
+        var editorial = auxiliarLibro.getEditorial();
+        var edicion = auxiliarLibro.getEdicion();
+        var pais = auxiliarLibro.getPais();
+        var seccion = document.getElementById("datosLibro");
+        seccion.innerHTML = "\n\t\t\t<p>titulo: " + titulo + "<p>\n\t\t\t<p>autor: " + autor + "<p>\n\t\t\t<p>a\u00F1oPublicacion: " + añoPublicacion + "<p>\n\t\t\t<p>editorial: " + editorial + "<p>\n\t\t\t<p>edicion: " + edicion + "<p>\n\t\t\t<p>pais: " + pais + "<p>";
     }
 }
 function getInfoCategoria() {
