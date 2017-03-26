@@ -10,10 +10,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Lista = (function () {
     function Lista() {
+        this.inicio = null;
+        this.fin = null;
     }
-    Lista.prototype.insertarNodo = function (nombre, nodo) {
-        //SE LE PASA EL NOMBRE DE LA CATEGORIA
-        nodo.setNombre(nombre);
+    Lista.prototype.insertarNodo = function (nodo) {
         //COMPROBAR SI NO EXISTE NINGUN NODO CATEGORIA
         if (this.inicio == null && this.fin == null) {
             //REFERENCIAR EL NODO POR LOS APUNTADORES DE INICIO Y FIN			
@@ -30,7 +30,6 @@ var Lista = (function () {
             this.inicio.setAnterior(this.fin);
         }
     };
-    //METODO PARA MANEJAR EL RECORRIDO ENTRE LOS NODOS
     //RETORNA EL NODO APUNTADO POR INICIO
     Lista.prototype.getInicio = function () {
         return this.inicio;
@@ -39,7 +38,7 @@ var Lista = (function () {
     Lista.prototype.getFin = function () {
         return this.fin;
     };
-    Lista.prototype.EliminarCategoria = function (obj) {
+    Lista.prototype.EliminarNodo = function (nodo) {
     };
     return Lista;
 }());
@@ -49,8 +48,9 @@ var ListaMenu = (function (_super) {
         return _super.call(this) || this;
     }
     ListaMenu.prototype.insertarNodoMenu = function (nombre) {
-        var objNodo = new Categoria();
-        this.insertarNodo(nombre, objNodo);
+        var nodo = new Categoria();
+        nodo.setNombre(nombre);
+        this.insertarNodo(nodo);
     };
     return ListaMenu;
 }(Lista));
@@ -59,5 +59,22 @@ var ListaLibro = (function (_super) {
     function ListaLibro() {
         return _super.call(this) || this;
     }
+    ListaLibro.prototype.insertarNodoLibro = function (nodoCategoria, datos) {
+        var nodoLibro = new Libro();
+        nodoLibro.setTitulo(datos[0]);
+        nodoLibro.setAutor(datos[1]);
+        nodoLibro.setAñoPublicacion(datos[2]);
+        nodoLibro.setEditorial(datos[3]);
+        nodoLibro.setEdicion(datos[4]);
+        nodoLibro.setPais(datos[5]);
+        if (nodoCategoria.getAbajo() == null) {
+            this.insertarNodo(nodoLibro);
+            nodoCategoria.setAbajo(nodoLibro);
+            nodoLibro.setMiCategoria(nodoCategoria);
+        }
+        else {
+            this.insertarNodo(nodoLibro);
+        }
+    };
     return ListaLibro;
 }(Lista));
