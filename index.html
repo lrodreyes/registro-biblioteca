@@ -11,15 +11,18 @@
 <body>
 
 	<section id="seccionInformacionCategoria" hidden>
-		<button class="btn" id="agregarCategoria" onClick="mostrarSeccionAC()">Agregar</button>
-		<button id="verLibros" onClick="getInfoLibro()">Ver libros</button>
+		<a class="btn" id="agregarCategoria" onClick="mostrarSeccionAC()">Agregar</a>
+		<a class="btn" id="verLibros" onClick="getInfoLibro()">Ver libros</a>
+		
+		<div class="categoria-container">
+			<a class="icon" id="anteriorCategoria" onClick="anteriorCategoria()"><i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i></a>
 
-		<div id="datosCategoria">		
+			<div id="datosCategoria">		
 
+			</div>
+
+			<a class="icon" id="siguienteCategoria" onClick="siguienteCategoria()"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
 		</div>
-
-		<a class="icon" id="anteriorCategoria" onClick="anteriorCategoria()"><i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i></a>
-		<a class="icon" id="siguienteCategoria" onClick="siguienteCategoria()"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
 	</section>
 
 	<section id="seccionAgregarCategoria" hidden>
