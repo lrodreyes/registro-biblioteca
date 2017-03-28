@@ -187,8 +187,7 @@ function getInfoCategoria(){
 		let cantidad = auxiliarCategoria.getCantidad();
 
 		document.getElementById("datosCategoria").innerHTML = `	
-			<p>${nombre}<p>
-			<p>${cantidad} Libros registrados<p>`;
+			<p>${nombre}<p>`;
 
 		document.getElementById("verLibros").removeAttribute("disabled");
 		document.getElementById("anteriorCategoria").removeAttribute("disabled");

@@ -145,7 +145,7 @@ function getInfoCategoria() {
         //SE OBTIENEN LOS DATOS DE LA CATEGORIA
         var nombre = auxiliarCategoria.getNombre();
         var cantidad = auxiliarCategoria.getCantidad();
-        document.getElementById("datosCategoria").innerHTML = "\t\n\t\t\t<p>" + nombre + "<p>\n\t\t\t<p>" + cantidad + " Libros registrados<p>";
+        document.getElementById("datosCategoria").innerHTML = "\t\n\t\t\t<p>" + nombre + "<p>";
         document.getElementById("verLibros").removeAttribute("disabled");
         document.getElementById("anteriorCategoria").removeAttribute("disabled");
         document.getElementById("siguienteCategoria").removeAttribute("disabled");
