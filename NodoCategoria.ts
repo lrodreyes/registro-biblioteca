@@ -8,6 +8,9 @@ class Categoria{
 	//APUNTADOR DE TIPO NODO LIBRO
 	private abajo : Libro;
 
+	//APUNTADOR PARA LA LISTA DE LIBROS
+	private lista : Listas;
+
 	//INFORMACION DEL NODO
 	private nombre : string;
 	private cantidad : number;
@@ -16,6 +19,7 @@ class Categoria{
 		this.siguiente = null;
 		this.anterior = null;
 		this.abajo = null;
+		this.lista = null;
 		this.cantidad = 0;
 	}
 
@@ -49,6 +53,10 @@ class Categoria{
 		this.abajo = abajo;
 	}
 
+	public setLista(lista : Lista) :void{
+		this.lista = lista;
+	}
+
 	public getSiguiente() : Categoria {
 		return this.siguiente;
 	}
@@ -59,6 +67,10 @@ class Categoria{
 
 	public getAbajo() : Libro {
 		return this.abajo;
+	}
+
+	public getLista() : Lista {
+		return this.lista;
 	}
 
 }

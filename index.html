@@ -33,9 +33,9 @@
 
 		<div id="datosLibro">
 		</div>
-
-		<button id="siguienteLibro" onClick="siguienteLibro">Siguiente</button>
-		<button id="anteriorLibro" onClick="anteriorLibro">Anterior</button>
+		
+		<button id="anteriorLibro" onClick="anteriorLibro()">Anterior</button>
+		<button id="siguienteLibro" onClick="siguienteLibro()">Siguiente</button>
 	</section>
 
 	<section id="seccionAgregarLibro" hidden>
@@ -53,7 +53,7 @@
 			<input type="text" id="editorial" required><br>
 
 			<label>Numero de la edicion</label>
-			<input type="number" id="edicion" required><br>
+			<input type="text" id="edicion" required><br>
 
 			<label>Pais en el que se publico</label>
 			<input type="text" id="pais" required><br>

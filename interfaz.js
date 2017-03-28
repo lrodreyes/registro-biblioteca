@@ -1,11 +1,24 @@
 var objListaMenu = new ListaMenu(); //OBJETO PARA ACCEDER A LOS METODOS DE LA CLASE LISTACATEGORIA
-var objListaLibro = new ListaLibro();
-// objListaMenu.insertarNodoMenu("Matematicas");
-// objListaMenu.insertarNodoMenu("Historia");
-// objListaMenu.insertarNodoMenu("Geografia");
+var listaLibro1 = new ListaLibro();
+//SE INGRESAN DATOS DE CATEGORIAS
+objListaMenu.insertarNodoMenu("Matematicas");
+objListaMenu.insertarNodoMenu("Historia");
+objListaMenu.insertarNodoMenu("Geografia");
+//APUNTADORES
 var auxiliarCategoria; //APUNTADOR PARA RECORRER LOS NODOS CATEGORIA
 var auxiliarLibro; //APUNTADOR PARA RECORRER LOS NODOS DE TIPO LIBRO
-auxiliarCategoria = this.objListaMenu.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
+//SE INICIALIZA APUNTADOR DE CATEGORIA
+auxiliarCategoria = objListaMenu.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
+//SE INGRESAN DATOS DE LIBRO EN LA PRIMERA CATEGORIA
+var libroDefault1 = ["mi titulo", "un autor", "1995", "pearson", "primera edicion", "mexico"];
+var libroDefault2 = ["otro titulo", "segundo autor", "1995", "segunda editorial", "tercera edicion", "EUA"];
+var libroDefault3 = ["otro tercer titulo", "tercer autor", "1995", "tercera editorial", "quinta edicion", "Canada"];
+listaLibro1.insertarNodoLibro(auxiliarCategoria, listaLibro1, libroDefault1);
+listaLibro1.insertarNodoLibro(auxiliarCategoria, listaLibro1, libroDefault2);
+listaLibro1.insertarNodoLibro(auxiliarCategoria, listaLibro1, libroDefault3);
+//SE INICIALIZA APUNTADOR DE LIBROS
+auxiliarLibro = auxiliarCategoria.getAbajo();
+//SE LLAMA AL METODO PARA MOSTRAR LA PRIMERA CATEGORIA
 getInfoCategoria();
 function mostrarSeccionIC() {
     document.getElementById("seccionAgregarCategoria").setAttribute("hidden", "true");
@@ -61,13 +74,34 @@ function registrarLibro() {
     var edicion = document.getElementById("edicion").value.toString();
     var pais = document.getElementById("pais").value.toString();
     var datos = [nombre, autor, año, editorial, edicion, pais];
-    objListaLibro.insertarNodoLibro(auxiliarCategoria, datos);
+    var objListaLibro;
+    if (auxiliarCategoria.getLista() == null) {
+        objListaLibro = new Lista();
+    }
+    else {
+        objListaLibro = auxiliarCategoria.getLista(); //SE OBTIENE LA INSTANCIA ALMACENADA DE ESA LISTA
+    }
+    objListaLibro.insertarNodoLibro(auxiliarCategoria, objListaLibro, datos); //SE MANDAN A ALMACENAR LOS DATOS
+    auxiliarLibro = objListaLibro.getInicio(); //SE SITUA EL APUNTADOR AL PRINCIPIO DE LA LISTA DE LIBROS
     document.getElementById("formLibro").reset();
+    alert("El libro se registro correctamente");
+}
+function siguienteLibro() {
+    if (auxiliarLibro.getSiguiente() != null) {
+        auxiliarLibro = auxiliarLibro.getSiguiente();
+        getInfoLibro();
+    }
+}
+function anteriorLibro() {
+    if (auxiliarLibro.getAnterior() != null) {
+        auxiliarLibro = auxiliarLibro.getAnterior();
+        getInfoLibro();
+    }
 }
 function getInfoLibro() {
     mostrarSeccionIL();
     //COMPROBAR SI EXISTEN LIBROS REGISTRADOS
-    if (auxiliarLibro == null) {
+    if (auxiliarCategoria.getAbajo == null) {
         //NO HAY LIBROS REGISTRADOS
         var seccion = document.getElementById("datosLibro");
         seccion.innerHTML = "\n\t\t\t<p> No existen libros registrados</p>";
@@ -84,6 +118,8 @@ function getInfoLibro() {
         var pais = auxiliarLibro.getPais();
         var seccion = document.getElementById("datosLibro");
         seccion.innerHTML = "\n\t\t\t<p>titulo: " + titulo + "<p>\n\t\t\t<p>autor: " + autor + "<p>\n\t\t\t<p>a\u00F1oPublicacion: " + añoPublicacion + "<p>\n\t\t\t<p>editorial: " + editorial + "<p>\n\t\t\t<p>edicion: " + edicion + "<p>\n\t\t\t<p>pais: " + pais + "<p>";
+        document.getElementById("siguienteLibro").removeAttribute("disabled");
+        document.getElementById("anteriorLibro").removeAttribute("disabled");
     }
 }
 function getInfoCategoria() {
@@ -100,8 +136,9 @@ function getInfoCategoria() {
         document.getElementById("siguienteCategoria").setAttribute("disabled", "true");
     }
     else {
-        auxiliarLibro = auxiliarCategoria.getAbajo();
+        auxiliarLibro = auxiliarCategoria.getAbajo(); //INICIALIZAR EL APUNTADOR DE LIBROS
         mostrarSeccionIC();
+        //SE OBTIENEN LOS DATOS DE LA CATEGORIA
         var nombre = auxiliarCategoria.getNombre();
         var cantidad = auxiliarCategoria.getCantidad();
         document.getElementById("datosCategoria").innerHTML = "\t\n\t\t\t<p>" + nombre + "<p>\n\t\t\t<p>" + cantidad + " Libros registrados<p>";

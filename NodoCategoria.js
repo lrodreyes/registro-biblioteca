@@ -4,6 +4,7 @@ var Categoria = (function () {
         this.siguiente = null;
         this.anterior = null;
         this.abajo = null;
+        this.lista = null;
         this.cantidad = 0;
     }
     //METODOS PARA INGRESAR Y OBTENER LA INFORMACION
@@ -29,6 +30,9 @@ var Categoria = (function () {
     Categoria.prototype.setAbajo = function (abajo) {
         this.abajo = abajo;
     };
+    Categoria.prototype.setLista = function (lista) {
+        this.lista = lista;
+    };
     Categoria.prototype.getSiguiente = function () {
         return this.siguiente;
     };
@@ -37,6 +41,9 @@ var Categoria = (function () {
     };
     Categoria.prototype.getAbajo = function () {
         return this.abajo;
+    };
+    Categoria.prototype.getLista = function () {
+        return this.lista;
     };
     return Categoria;
 }());

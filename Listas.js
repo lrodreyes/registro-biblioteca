@@ -59,7 +59,7 @@ var ListaLibro = (function (_super) {
     function ListaLibro() {
         return _super.call(this) || this;
     }
-    ListaLibro.prototype.insertarNodoLibro = function (nodoCategoria, datos) {
+    ListaLibro.prototype.insertarNodoLibro = function (nodoCategoria, objLista, datos) {
         var nodoLibro = new Libro();
         nodoLibro.setTitulo(datos[0]);
         nodoLibro.setAutor(datos[1]);
@@ -69,6 +69,7 @@ var ListaLibro = (function (_super) {
         nodoLibro.setPais(datos[5]);
         this.insertarNodo(nodoLibro);
         if (nodoCategoria.getAbajo() == null) {
+            nodoCategoria.setLista(objLista); //SE ALMACENA EL OBJETO DE LA LISTA, SOLO LA PRIMERA VEZ QUE ES CREADA
             nodoCategoria.setAbajo(nodoLibro);
             nodoLibro.setMiCategoria(nodoCategoria);
         }

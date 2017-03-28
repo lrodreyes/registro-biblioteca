@@ -1,15 +1,32 @@
 var objListaMenu : ListaMenu = new ListaMenu(); //OBJETO PARA ACCEDER A LOS METODOS DE LA CLASE LISTACATEGORIA
-var objListaLibro : ListaLibro = new ListaLibro();
+let listaLibro1 : ListaLibro = new ListaLibro();
 
-// objListaMenu.insertarNodoMenu("Matematicas");
-// objListaMenu.insertarNodoMenu("Historia");
-// objListaMenu.insertarNodoMenu("Geografia");
+//SE INGRESAN DATOS DE CATEGORIAS
+objListaMenu.insertarNodoMenu("Matematicas");
+objListaMenu.insertarNodoMenu("Historia");
+objListaMenu.insertarNodoMenu("Geografia");
 
+//APUNTADORES
 var auxiliarCategoria : Categoria; //APUNTADOR PARA RECORRER LOS NODOS CATEGORIA
 var auxiliarLibro : Libro; //APUNTADOR PARA RECORRER LOS NODOS DE TIPO LIBRO
 
-auxiliarCategoria = this.objListaMenu.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
-	
+//SE INICIALIZA APUNTADOR DE CATEGORIA
+auxiliarCategoria = objListaMenu.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
+
+//SE INGRESAN DATOS DE LIBRO EN LA PRIMERA CATEGORIA
+let libroDefault1: Array <string>=["mi titulo","un autor","1995","pearson","primera edicion","mexico"];
+let libroDefault2: Array <string>=["otro titulo","segundo autor","1995","segunda editorial","tercera edicion","EUA"];
+let libroDefault3: Array <string>=["otro tercer titulo","tercer autor","1995","tercera editorial","quinta edicion","Canada"];
+
+listaLibro1.insertarNodoLibro(auxiliarCategoria,listaLibro1,libroDefault1);
+listaLibro1.insertarNodoLibro(auxiliarCategoria,listaLibro1,libroDefault2);
+listaLibro1.insertarNodoLibro(auxiliarCategoria,listaLibro1,libroDefault3);
+
+//SE INICIALIZA APUNTADOR DE LIBROS
+auxiliarLibro = auxiliarCategoria.getAbajo();
+
+
+//SE LLAMA AL METODO PARA MOSTRAR LA PRIMERA CATEGORIA
 getInfoCategoria();
 
 function mostrarSeccionIC(){
@@ -76,16 +93,40 @@ function registrarLibro(){
 
 	let datos : Array<string> = [nombre, autor, año, editorial, edicion, pais];
 	
-	objListaLibro.insertarNodoLibro(auxiliarCategoria,datos);
+	let objListaLibro: Lista;
+	if(auxiliarCategoria.getLista()==null){//SI NO EXISTE UNA LISTA DE LIBROS CREADA EN ESA CATEGORIA
+		objListaLibro = new Lista();
+	}
+	else{
+		objListaLibro = auxiliarCategoria.getLista(); //SE OBTIENE LA INSTANCIA ALMACENADA DE ESA LISTA
+	}
 
+	objListaLibro.insertarNodoLibro(auxiliarCategoria, objListaLibro, datos); //SE MANDAN A ALMACENAR LOS DATOS
+	auxiliarLibro = objListaLibro.getInicio();//SE SITUA EL APUNTADOR AL PRINCIPIO DE LA LISTA DE LIBROS
 	document.getElementById("formLibro").reset();
+	alert("El libro se registro correctamente");
+}
+
+function siguienteLibro(){
+	if(auxiliarLibro.getSiguiente()!=null){
+		auxiliarLibro = auxiliarLibro.getSiguiente();
+		getInfoLibro();
+
+	}
+}
+
+function anteriorLibro(){
+	if(auxiliarLibro.getAnterior()!=null){
+		auxiliarLibro = auxiliarLibro.getAnterior();
+		getInfoLibro();
+	}
 }
 
 function getInfoLibro(){
 	mostrarSeccionIL();
 
 	//COMPROBAR SI EXISTEN LIBROS REGISTRADOS
-	if(auxiliarLibro==null){
+	if(auxiliarCategoria.getAbajo==null){
 		//NO HAY LIBROS REGISTRADOS
 		let seccion = document.getElementById("datosLibro");
 		seccion.innerHTML=`
@@ -95,7 +136,6 @@ function getInfoLibro(){
 
 	}
 	else{
-
 		mostrarSeccionIL();
 		let titulo = auxiliarLibro.getTitulo();
 		let autor = auxiliarLibro.getAutor();
@@ -112,6 +152,10 @@ function getInfoLibro(){
 			<p>editorial: ${editorial}<p>
 			<p>edicion: ${edicion}<p>
 			<p>pais: ${pais}<p>`;
+
+		document.getElementById("siguienteLibro").removeAttribute("disabled");
+		document.getElementById("anteriorLibro").removeAttribute("disabled");
+		
 	}
 }
 
@@ -131,8 +175,9 @@ function getInfoCategoria(){
 
 	}
 	else{
-		auxiliarLibro = auxiliarCategoria.getAbajo();
+		auxiliarLibro = auxiliarCategoria.getAbajo(); //INICIALIZAR EL APUNTADOR DE LIBROS
 		mostrarSeccionIC();
+		//SE OBTIENEN LOS DATOS DE LA CATEGORIA
 		let nombre = auxiliarCategoria.getNombre();
 		let cantidad = auxiliarCategoria.getCantidad();
 

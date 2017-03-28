@@ -59,7 +59,7 @@ class ListaLibro extends Lista{
 		super();
 	}
 
-	insertarNodoLibro(nodoCategoria : Categoria, datos : Array <string>) : void {
+	insertarNodoLibro(nodoCategoria : Categoria, objLista:Lista, datos : Array <string>) : void {
 		let nodoLibro = new Libro();
 		nodoLibro.setTitulo(datos[0]);
 		nodoLibro.setAutor(datos[1]);
@@ -71,6 +71,7 @@ class ListaLibro extends Lista{
 		this.insertarNodo(nodoLibro);
 
 		if (nodoCategoria.getAbajo()==null){ //SI NO EXISTE ALGUN LIBRO REGISTRADO EN ESA CATEGORIA
+			nodoCategoria.setLista(objLista);//SE ALMACENA EL OBJETO DE LA LISTA, SOLO LA PRIMERA VEZ QUE ES CREADA
 			nodoCategoria.setAbajo(nodoLibro);
 			nodoLibro.setMiCategoria(nodoCategoria);
 		}
