@@ -3,16 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<title>Biblioteca</title>
+	<link href="css/normalize.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="fontawesome/css/font-awesome.min.css" rel="stylesheet">
+
 	<link rel="stylesheet" href="css/app.css">
 
 </head>
 <body>
-
+	<header> <a href="#" onClick="getInfoCategoria()"><h1>Biblioteca</h1></a> </header>
 	<section id="seccionInformacionCategoria" hidden>
-		<a class="btn" id="agregarCategoria" onClick="mostrarSeccionAC()">Agregar</a>
-		<a class="btn" id="verLibros" onClick="getInfoLibro()">Ver libros</a>
+
 		
 		<div class="categoria-container">
 			<a class="icon" id="anteriorCategoria" onClick="anteriorCategoria()"><i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i></a>
@@ -23,50 +24,83 @@
 
 			<a class="icon" id="siguienteCategoria" onClick="siguienteCategoria()"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
 		</div>
+
+		<div>
+			<a class="btn" id="agregarCategoria" onClick="mostrarSeccionAC()"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar categoria</a>
+			<a class="btn" id="verLibros" onClick="getInfoLibro()"><i class="fa fa-eye" aria-hidden="true"></i> Ver libros</a>
+		</div>
+
+
 	</section>
 
 	<section id="seccionAgregarCategoria" hidden>
 		<form id="formCategoria">
-			<label>Nombre de la categoria: </label>
-			<input type="text" id="nombre" placeholder="Nombre" required>
-			<button onClick="getInfoCategoria()">Cancelar</button>
-			<input type="submit" onClick="registrarCategoria()" value="Agregar"></input>
+			<div class="kappa">
+				<label>Nombre de categoria :</label>
+				<input type="text" id="nombre" placeholder="Nombre" required>
+			</div>
+			<a class="btn" onClick="getInfoCategoria()">Cancelar</a>
+			<a class="btn" type="submit" onClick="registrarCategoria()"> Agregar</a>
 		</form>	
 	</section>
 
 	<section id="seccionInformacionLibro" hidden>
-		<button id="menuCategoria" onClick="getInfoCategoria()">Volver al menú</button>
-		<button id="agregarLibro" onClick="mostrarSeccionAL()">Agregar libro</button>
+		<div class="row-libro">
+			
 
-		<div id="datosLibro">
-		</div>
+			<a class="icon" id="anteriorLibro" onClick="anteriorLibro()"><i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i></a>
+			
+
+			<div id="datosLibro">
+			</div>
+
 		
-		<button id="anteriorLibro" onClick="anteriorLibro()">Anterior</button>
-		<button id="siguienteLibro" onClick="siguienteLibro()">Siguiente</button>
+
+			<a class="icon" id="siguienteLibro" onClick="siguienteLibro()"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
+		</div>
+			
+			<a class="info-libro btn" id="menuCategoria" onClick="getInfoCategoria()">Volver al menú</a>
+
+			<a class="info-libro btn" id="agregarLibro" onClick="mostrarSeccionAL()">Agregar libro</a>
+		
+		
 	</section>
 
 	<section id="seccionAgregarLibro" hidden>
 		<form id="formLibro">
-			<label>Titulo del libro:</label>
-			<input type="text" id="titulo" placeholder="Titulo" required><br>
+			<div class="kappa">
+				<label>Titulo del libro:</label>
+				<input type="text" id="titulo"  required>
+			</div>
 
-			<label>Nombre del autor del libro</label>
-			<input type="text" id="autor" required><br>
+			<div class="kappita">
+				<label>Autor del libro: </label>
+				<input type="text" id="autor" required>
+			</div>
 
-			<label>Año de publicacion</label><!-- ver si se puede desplegar un calendario con solo los años -->
-			<input type="text" id="año" required><br>
+			<div class="kappa">
+				<label>Año publicacion: </label><!-- ver si se puede desplegar un calendario con solo los años -->
+				<input type="text" id="año" required>
+			</div>
+			
+			<div class="kappita">
+				<label>Nombre de la editorial: </label>
+				<input type="text" id="editorial" required>
+			</div>
+			
+			<div class="kappa">
+				<label>Numero de la edicion: </label>
+				<input type="text" id="edicion" required>
+			</div>
 
-			<label>Nombre de la editorial</label>
-			<input type="text" id="editorial" required><br>
-
-			<label>Numero de la edicion</label>
-			<input type="text" id="edicion" required><br>
-
-			<label>Pais en el que se publico</label>
-			<input type="text" id="pais" required><br>
-
-			<button onClick="getInfoLibro()">Cancelar</button>
-			<input type="submit" onClick="registrarLibro()" value="Agregar">
+			<div class="kappita">
+				<label>Pais en el que se publico: </label>
+				<input type="text" id="pais" required>
+			</div>
+			
+			<a class="btn"  onClick="registrarLibro()"> Agregar</a>
+			<a class="btn" onClick="getInfoLibro()">Cancelar</a>
+			
 		</form>		
 	</section>
 

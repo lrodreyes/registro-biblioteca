@@ -121,7 +121,7 @@ function getInfoLibro() {
         var edicion = auxiliarLibro.getEdicion();
         var pais = auxiliarLibro.getPais();
         var seccion = document.getElementById("datosLibro");
-        seccion.innerHTML = "\n\t\t\t<p>titulo: " + titulo + "<p>\n\t\t\t<p>autor: " + autor + "<p>\n\t\t\t<p>a\u00F1oPublicacion: " + añoPublicacion + "<p>\n\t\t\t<p>editorial: " + editorial + "<p>\n\t\t\t<p>edicion: " + edicion + "<p>\n\t\t\t<p>pais: " + pais + "<p>";
+        seccion.innerHTML = "<div class='libro'>\n\t\t\t<p class='kappa'> Titulo: " + titulo + "</p>\n\t\t\t<p class='kappita'>Autor: " + autor + "</p>\n\t\t\t<p class='kappa'> A\u00F1o de Publicación: " + añoPublicacion + "</p>\n\t\t\t<p class='kappita'>Editorial: " + editorial + "</p>\n\t\t\t<p class='kappa' >Edicion: " + edicion + "</p>\n\t\t\t<p class='kappita'>Pais: " + pais + "</p> </div>";
         document.getElementById("siguienteLibro").removeAttribute("disabled");
         document.getElementById("anteriorLibro").removeAttribute("disabled");
     }
