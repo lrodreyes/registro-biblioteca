@@ -1,14 +1,14 @@
 var objListaMenu : ListaMenu = new ListaMenu(); //OBJETO PARA ACCEDER A LOS METODOS DE LA CLASE LISTACATEGORIA
 let listaLibro1 : ListaLibro = new ListaLibro();
 
+//APUNTADORES
+var auxiliarCategoria : Categoria; //APUNTADOR PARA RECORRER LOS NODOS CATEGORIA
+var auxiliarLibro : Libro; //APUNTADOR PARA RECORRER LOS NODOS DE TIPO LIBRO
+
 //SE INGRESAN DATOS DE CATEGORIAS
 objListaMenu.insertarNodoMenu("Matematicas");
 objListaMenu.insertarNodoMenu("Historia");
 objListaMenu.insertarNodoMenu("Geografia");
-
-//APUNTADORES
-var auxiliarCategoria : Categoria; //APUNTADOR PARA RECORRER LOS NODOS CATEGORIA
-var auxiliarLibro : Libro; //APUNTADOR PARA RECORRER LOS NODOS DE TIPO LIBRO
 
 //SE INICIALIZA APUNTADOR DE CATEGORIA
 auxiliarCategoria = objListaMenu.getInicio(); //SE POSICION EL APUNTADOR DE CATEGORIA EN EL PRIMER ELEMENTO DE LA LISTA
@@ -60,6 +60,7 @@ function mostrarSeccionAL(){
 function anteriorCategoria(){//CADA VEZ QUE SE 
 	if(auxiliarCategoria.getAnterior()!=null){
 		auxiliarCategoria = auxiliarCategoria.getAnterior();
+		auxiliarLibro = auxiliarCategoria.getAbajo();
 		getInfoCategoria();
 	}	
 }
@@ -67,6 +68,7 @@ function anteriorCategoria(){//CADA VEZ QUE SE
 function siguienteCategoria(){
 	if (auxiliarCategoria.getSiguiente()!=null){
 		auxiliarCategoria = auxiliarCategoria.getSiguiente();
+		auxiliarLibro = auxiliarCategoria.getAbajo();
 		getInfoCategoria();
 	}
 }
@@ -84,7 +86,7 @@ function registrarCategoria(){
 }
 
 function registrarLibro(){
-	let nombre : string = (<HTMLInputElement> document.getElementById("nombre")).value.toString();
+	let nombre : string = (<HTMLInputElement> document.getElementById("titulo")).value.toString();
 	let autor : string = (<HTMLInputElement> document.getElementById("autor")).value.toString();
 	let año : string = (<HTMLInputElement> document.getElementById("año")).value.toString();
 	let editorial : string = (<HTMLInputElement> document.getElementById("editorial")).value.toString();
@@ -93,9 +95,9 @@ function registrarLibro(){
 
 	let datos : Array<string> = [nombre, autor, año, editorial, edicion, pais];
 	
-	let objListaLibro: Lista;
+	let objListaLibro: ListaLibro;
 	if(auxiliarCategoria.getLista()==null){//SI NO EXISTE UNA LISTA DE LIBROS CREADA EN ESA CATEGORIA
-		objListaLibro = new Lista();
+		objListaLibro = new ListaLibro();// SE CREA UN NUEVO OBJETO DE LISTA
 	}
 	else{
 		objListaLibro = auxiliarCategoria.getLista(); //SE OBTIENE LA INSTANCIA ALMACENADA DE ESA LISTA
@@ -104,6 +106,7 @@ function registrarLibro(){
 	objListaLibro.insertarNodoLibro(auxiliarCategoria, objListaLibro, datos); //SE MANDAN A ALMACENAR LOS DATOS
 	auxiliarLibro = objListaLibro.getInicio();//SE SITUA EL APUNTADOR AL PRINCIPIO DE LA LISTA DE LIBROS
 	document.getElementById("formLibro").reset();
+
 	alert("El libro se registro correctamente");
 }
 
@@ -126,8 +129,9 @@ function getInfoLibro(){
 	mostrarSeccionIL();
 
 	//COMPROBAR SI EXISTEN LIBROS REGISTRADOS
-	if(auxiliarCategoria.getAbajo==null){
+	if(auxiliarLibro==null){
 		//NO HAY LIBROS REGISTRADOS
+		console.log("es null");
 		let seccion = document.getElementById("datosLibro");
 		seccion.innerHTML=`
 			<p> No existen libros registrados</p>`;
@@ -136,6 +140,7 @@ function getInfoLibro(){
 
 	}
 	else{
+		console.log("no es null");
 		mostrarSeccionIL();
 		let titulo = auxiliarLibro.getTitulo();
 		let autor = auxiliarLibro.getAutor();

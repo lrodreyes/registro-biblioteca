@@ -9,7 +9,7 @@ class Categoria{
 	private abajo : Libro;
 
 	//APUNTADOR PARA LA LISTA DE LIBROS
-	private lista : Listas;
+	private lista : ListaLibro;
 
 	//INFORMACION DEL NODO
 	private nombre : string;
@@ -53,7 +53,7 @@ class Categoria{
 		this.abajo = abajo;
 	}
 
-	public setLista(lista : Lista) :void{
+	public setLista(lista : ListaLibro) :void{
 		this.lista = lista;
 	}
 
@@ -69,7 +69,7 @@ class Categoria{
 		return this.abajo;
 	}
 
-	public getLista() : Lista {
+	public getLista() : ListaLibro {
 		return this.lista;
 	}
 

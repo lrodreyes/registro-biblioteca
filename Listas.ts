@@ -59,7 +59,7 @@ class ListaLibro extends Lista{
 		super();
 	}
 
-	insertarNodoLibro(nodoCategoria : Categoria, objLista:Lista, datos : Array <string>) : void {
+	insertarNodoLibro(nodoCategoria : Categoria, objLista: ListaLibro, datos : Array <string>) : void {
 		let nodoLibro = new Libro();
 		nodoLibro.setTitulo(datos[0]);
 		nodoLibro.setAutor(datos[1]);
