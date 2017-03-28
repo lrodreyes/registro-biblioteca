@@ -3,19 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>Biblioteca</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="fontawesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/app.css">
+
 </head>
 <body>
 
 	<section id="seccionInformacionCategoria" hidden>
-		<button id="agregarCategoria" onClick="mostrarSeccionAC()">Agregar</button>
+		<button class="btn" id="agregarCategoria" onClick="mostrarSeccionAC()">Agregar</button>
 		<button id="verLibros" onClick="getInfoLibro()">Ver libros</button>
 
 		<div id="datosCategoria">		
 
 		</div>
 
-		<button id="anteriorCategoria" onClick="anteriorCategoria()">Atras</button>
-		<button id="siguienteCategoria" onClick="siguienteCategoria()">Siguiente</button>
+		<a class="icon" id="anteriorCategoria" onClick="anteriorCategoria()"><i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i></a>
+		<a class="icon" id="siguienteCategoria" onClick="siguienteCategoria()"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
 	</section>
 
 	<section id="seccionAgregarCategoria" hidden>

@@ -1,0 +1,38 @@
+body{
+	background-color: #F1F3D2;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.btn{
+	background-color: #894A4A;
+	border-color: #9D2638;
+	color: #fff;
+	border: 1px solid transparent;
+}
+
+.icon{
+	background-color: transparent;
+	border-color: transparent;
+	cursor: pointer;
+}
+
+.icon:hover{
+	color: #9D2638;
+	font-size: 1.2em;
+}
+
+
+.btn:hover{
+background-color: #9D2638;
+
+}
+
+.btn:focus{
+
+
+}
+
+.btn:active{
+
+
+}
